@@ -1,5 +1,6 @@
 ﻿@color_text: #0a0a0a;
 @color_h2: #5f5f5f;
+@color_error: red;
 
 body {
 	font: 14px Arial;
@@ -18,9 +19,13 @@ h3 {
 	font-size: 18px;
 }
 #root {
-	max-width: 302.8px;
+	max-width: 300px;
 	min-height: 100px;
 	border: 1px solid lightgray;
 	margin: 20px auto;
 	padding: 0;
+}
+.error-message {
+	margin-top:10px;
+	color: @color_error;
 }

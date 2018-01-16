@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.js';
-import Login from './components/Login.js';
-import Register from './components/Register.js';
-import NotFound from './components/NotFound.js';
-import NavMenu from './components/NavMenu.js';
+import App from './components/js/App.js';
+import Login from './components/js/Login.js';
+import Register from './components/js/Register.js';
+import NotFound from './components/js/NotFound.js';
+import NavMenu from './components/js/NavMenu.js';
 import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 
 ReactDOM.render(

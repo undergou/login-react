@@ -17,7 +17,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: "babel-loader",
-                exclude: [/node_modules/, /public/]
+                exclude: [/node_modules/, /public/],
+                query:
+                    {
+                        presets:['react'],
+                        plugins: ["jsx-control-statements"]
+                    }
             },
             {
                 test: /\.css$/,
@@ -41,7 +46,8 @@ module.exports = {
                 loader: "babel-loader",
                 query:
                     {
-                        presets:['react']
+                        presets:['react'],
+                        plugins: ["jsx-control-statements"]
                     }
             },
             {

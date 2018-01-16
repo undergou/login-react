@@ -1,5 +1,6 @@
 import React from 'react';
 import ResultScreen from './ResultScreen';
+import { ButtonToolbar, Button, FormControl } from 'react-bootstrap';
 
 export default class Login extends React.Component{
     constructor(){
@@ -44,32 +45,39 @@ export default class Login extends React.Component{
             const loginScreen = <div className="content">
                 <h2>Login</h2>
                     <form>
-                        <label>
-                            <input type="text"
-                                   name="username"
-                                   value={this.state.username}
-                                   onChange={(event) => this.setState({username: event.target.value})}
-                                   placeholder="Username"
-                                   autoComplete="off"
-
-                            />
-                        </label>
+                        <FormControl
+                            type="text"
+                            name="username"
+                            value={this.state.username}
+                            placeholder="Username"
+                            onChange={(event) => this.setState({username: event.target.value})}
+                            autoComplete="off"
+                        />
                         <br/><br/>
-                        <label>
-                            <input type="password"
-                                   name="password"
-                                   value={this.state.password}
-                                   onChange={(event) => this.setState({password: event.target.value})}
-                                   placeholder="Password"
-                                   autoComplete="off"
-                            />
-                        </label>
+                        <FormControl
+                            type="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={(event) => this.setState({password: event.target.value})}
+                            placeholder="Password"
+                            autoComplete="off"
+                        />
                         <p className="error-message">{this.state.resultMessage}</p>
-                        <button onClick={this.handleLoginSubmit.bind(this)}>Sign in</button>
+                        <ButtonToolbar>
+                            <Button onClick={this.handleLoginSubmit.bind(this)} bsStyle="primary">Sign in</Button>
+                        </ButtonToolbar>
                     </form>
                 </div>;
         return (
-                this.state.isLoginSuccess?<ResultScreen message={this.state.resultMessage}/>:loginScreen
+            <Choose>
+                <When condition={ this.state.isLoginSuccess }>
+                    <ResultScreen message={this.state.resultMessage}/>
+                </When>
+                <Otherwise>
+                    {loginScreen}
+                </Otherwise>
+            </Choose>
+                // this.state.isLoginSuccess?<ResultScreen message={this.state.resultMessage}/>:loginScreen
             );
 
     }

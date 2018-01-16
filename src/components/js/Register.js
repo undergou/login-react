@@ -1,0 +1,89 @@
+import React from 'react';
+import ResultScreen from './ResultScreen';
+import { ButtonToolbar, Button, FormControl } from 'react-bootstrap';
+
+export default class Register extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            username: '',
+            password: '',
+            email:'',
+            isRegisterSuccess: false,
+            resultMessage:''
+        }
+    }
+    handleRegisterSubmit(event){
+        event.preventDefault();
+        let data = {
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email
+        };
+        let dataJson = JSON.stringify(data);
+        fetch('http://www.mocky.io/v2/5a58923b2d00008119d2e575',{
+            headers: {
+                "Content-type": "application/json"
+            },
+            method: 'post',
+            body: dataJson
+        })
+            .then((response)=>{
+                return response.json();
+            })
+            .then((data)=>{
+                if(data.result === "ok"){
+                    this.setState({isRegisterSuccess: true, resultMessage: data.message})
+                } else if(data.result === "error"){
+                    this.clearPasswordInput();
+                    this.setState({ resultMessage: data.message});
+                }
+            })
+    }
+    clearPasswordInput(){
+        this.setState({ password:''})
+    }
+    render(){
+           const registerScreen = <div className="content">
+               <h2>Register</h2>
+               <FormControl type="text"
+                            name="username"
+                            value={this.state.username}
+                            onChange={(event) => this.setState({username: event.target.value})}
+                            placeholder="Username"
+                            autoComplete="off"
+               />
+               <br/><br/>
+               <FormControl type="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={(event) => this.setState({password: event.target.value})}
+                            placeholder="Password"
+                            autoComplete="off"
+               />
+               <br/><br/>
+               <FormControl type="email"
+                            name="email"
+                            value={this.state.email}
+                            onChange={(event) => this.setState({email: event.target.value})}
+                            placeholder="Email"
+                            autoComplete="off"
+               />
+               <p className="error-message">{this.state.resultMessage}</p>
+               <ButtonToolbar>
+                   <Button onClick={this.handleRegisterSubmit.bind(this)} bsStyle="primary">Register</Button>
+               </ButtonToolbar>
+            </div>;
+        return (
+            <Choose>
+                <When condition={ this.state.isRegisterSuccess }>
+                    <ResultScreen message={this.state.resultMessage}/>
+                </When>
+                <Otherwise>
+                    {registerScreen}
+                </Otherwise>
+            </Choose>
+            // this.state.isRegisterSuccess?<ResultScreen message={this.state.resultMessage}/>:registerScreen
+        );
+    }
+}
