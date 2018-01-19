@@ -1,13 +1,16 @@
 import React from 'react';
 import ResultScreen from './ResultScreen';
-import { ButtonToolbar, Button, FormControl } from 'react-bootstrap';
+import { ButtonToolbar, Button, FormControl, Checkbox } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import sendData from '../services/sendData.js';
 
 export default class Login extends React.Component{
     constructor(){
         super();
         this.state = {
-            username:'',
+            userName:'',
             password:'',
+            persistent:false,
             isLoginSuccess: false,
             resultMessage:''
         }
@@ -15,26 +18,19 @@ export default class Login extends React.Component{
     handleLoginSubmit(event){
         event.preventDefault();
         let data = {
-            username: this.state.username,
-            password: this.state.password
+            "userName": this.state.userName,
+            "password": this.state.password,
+            "persistent": this.state.persistent
         };
-        let dataJson = JSON.stringify(data);
-        fetch('http://www.mocky.io/v2/5a588ba82d00002e15d2e562',{
-            headers: {
-                "Content-type": "application/json"
-            },
-            method: 'post',
-            body: dataJson
-        })
-            .then((response)=>{
-                return response.json();
-            })
-            .then((data)=>{
-                if(data.result === "ok"){
-                    this.setState({isLoginSuccess: true, resultMessage: data.message})
-                } else if(data.result === "error"){
-                    this.clearPasswordInput();
-                    this.setState({ resultMessage: data.message});
+        sendData(data, 'https://iamit.gq/api/auth/login')
+            .then( response => {
+                if(response.status != 200){
+                    response.json().then( data => {
+                        this.clearPasswordInput();
+                        this.setState({ resultMessage: data.errors});
+                    } )
+                } else{
+                    this.setState({isLoginSuccess: true, resultMessage: 'Hello, user!'})
                 }
             })
     }
@@ -47,10 +43,10 @@ export default class Login extends React.Component{
                     <form>
                         <FormControl
                             type="text"
-                            name="username"
-                            value={this.state.username}
+                            name="userName"
+                            value={this.state.userName}
                             placeholder="Username"
-                            onChange={(event) => this.setState({username: event.target.value})}
+                            onChange={(event) => this.setState({userName: event.target.value})}
                             autoComplete="off"
                         />
                         <br/><br/>
@@ -62,6 +58,14 @@ export default class Login extends React.Component{
                             placeholder="Password"
                             autoComplete="off"
                         />
+                        <Checkbox
+                            type="checkbox"
+                            name="persistent"
+                            onChange={(event) => this.setState({persistent: !this.state.persistent})}
+                        >
+                            Remember me
+                        </Checkbox>
+                        <p><Link to='/register'>Not registered? Register now!</Link></p>
                         <p className="error-message">{this.state.resultMessage}</p>
                         <ButtonToolbar>
                             <Button onClick={this.handleLoginSubmit.bind(this)} bsStyle="primary">Sign in</Button>

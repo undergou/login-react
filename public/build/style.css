@@ -1,10 +1,6 @@
 body {
-  font: 14px Arial;
+  font: 14px "Trebuchet MS";
   color: #0a0a0a;
-}
-h1 {
-  font-size: 28px;
-  text-align: center;
 }
 h2 {
   margin-top: 0;
@@ -14,26 +10,168 @@ h2 {
 h3 {
   font-size: 18px;
 }
-#root {
-  max-width: 300px;
-  min-height: 100px;
-  border: 1px solid lightgray;
-  margin: 20px auto;
-  padding: 0;
-}
 .error-message {
   margin-top: 10px;
   color: red;
 }
-.content {
-  text-align: center;
-  padding: 25px;
+.wrapper {
+  padding: 30px 50px;
 }
-.btn-toolbar {
+.content {
+  padding: 25px;
+  width: 25%;
+  margin: 80px auto;
+  text-align: center;
+}
+.content .btn-toolbar {
   width: 100px;
   margin: 0 auto;
 }
-button.btn.btn-primary {
+.content button.btn.btn-primary {
   width: 100px;
   margin: 15px 0;
+  font-size: 18px;
+}
+.form-control {
+  font-size: 18px;
+  text-align: center;
+}
+.tagline {
+  width: 70%;
+  margin-top: 200px;
+  margin-left: 50px;
+  text-align: left;
+}
+.tagline h1 {
+  font-size: 72px;
+  font-weight: bold;
+  font-family: "Trebuchet MS";
+  color: #051101;
+}
+.btn-warning {
+  border-radius: 2px;
+  font-size: 24px;
+}
+.wrap-content .btn-toolbar {
+  margin: 40px 0 0 50px;
+}
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-element {
+  display: inline-block;
+}
+.logo-img {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+.logo-text {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #08082d;
+  text-transform: uppercase;
+  width: 200px;
+  vertical-align: middle;
+}
+.navbar-header {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  justify-content: space-between;
+  font-size: 26px;
+}
+.navbar-brand {
+  font-size: 24px;
+}
+.course-header h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #5173ff;
+  text-transform: uppercase;
+}
+.course-header p {
+  text-align: center;
+  font-size: 22px;
+  color: #7d8291;
+}
+.course-grid {
+  max-width: 1000px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+.course-one {
+  width: 21%;
+  height: 300px;
+  background: linear-gradient(to bottom right, #3a9eca, #42bcea);
+  margin: 20px;
+  padding: 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.course-one:hover {
+  background: linear-gradient(to bottom right, #3196b7, #39a3cc);
+  box-shadow: 0 0 60px rgba(39, 78, 194, 0.5);
+  cursor: pointer;
+}
+.course-one img {
+  border-radius: 50px;
+  width: 80px;
+  height: 80px;
+  margin: 10px 0;
+}
+.course-one h3 {
+  text-align: center;
+  font-size: 20px;
+}
+.course-one-subtitle {
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.course-menu {
+  max-width: 500px;
+  margin: 50px auto;
+  border: 2px solid lightgray;
+  height: 45px;
+  font-size: 20px;
+  color: #ff433c;
+}
+.course-menu li {
+  width: 100%;
+  line-height: 45px;
+  text-align: center;
+  margin-top: -2px;
+}
+.course-menu li:hover {
+  color: white;
+  background-color: #ff433c;
+  cursor: pointer;
+}
+.courses-menu-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+.course-menu-active {
+  color: white;
+  background-color: #ff433c;
+  cursor: pointer;
 }

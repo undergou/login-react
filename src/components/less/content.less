@@ -1,12 +1,43 @@
-﻿.content {
-	text-align: center;
+﻿@color_tagline: #051101;
+@font_family_1: "Trebuchet MS";
+
+.content {
 	padding: 25px;
+	width: 25%;
+	margin: 80px auto;
+	text-align: center;
+	.btn-toolbar {
+		width: 100px;
+		margin: 0 auto;
+	}
+	button.btn.btn-primary {
+		width: 100px;
+		margin: 15px 0;
+		font-size: 18px;
+	}
 }
-.btn-toolbar{
-	width: 100px;
-	margin: 0 auto;
+.form-control {
+	font-size: 18px;
+	text-align: center;
 }
-button.btn.btn-primary{
-	width: 100px;
-	margin: 15px 0;
+.tagline {
+	width: 70%;
+	margin-top: 200px;
+	margin-left: 50px;
+	text-align: left;
+	h1 {
+		font-size: 72px;
+		font-weight: bold;
+		font-family: @font_family_1;
+		color: @color_tagline;
+	}
+}
+.btn-warning {
+	border-radius: 2px;
+	font-size: 24px;
+}
+.wrap-content {
+	.btn-toolbar {
+		margin: 40px 0 0 50px;
+	}
 }

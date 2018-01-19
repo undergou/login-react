@@ -1,6 +1,8 @@
 import React from 'react';
 import ResultScreen from './ResultScreen';
 import { ButtonToolbar, Button, FormControl } from 'react-bootstrap';
+import sendData from '../services/sendData.js';
+import {Link} from 'react-router-dom';
 
 export default class Register extends React.Component {
     constructor() {
@@ -16,29 +18,22 @@ export default class Register extends React.Component {
     handleRegisterSubmit(event){
         event.preventDefault();
         let data = {
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email
+            "userName": this.state.username,
+            "password": this.state.password,
+            "email": this.state.email
         };
-        let dataJson = JSON.stringify(data);
-        fetch('http://www.mocky.io/v2/5a58923b2d00008119d2e575',{
-            headers: {
-                "Content-type": "application/json"
-            },
-            method: 'post',
-            body: dataJson
-        })
-            .then((response)=>{
-                return response.json();
-            })
-            .then((data)=>{
-                if(data.result === "ok"){
-                    this.setState({isRegisterSuccess: true, resultMessage: data.message})
-                } else if(data.result === "error"){
-                    this.clearPasswordInput();
-                    this.setState({ resultMessage: data.message});
+        sendData(data, 'https://iamit.gq/api/account/register')
+            .then( response => {
+                if(response.status != 200){
+                    response.json().then( data => {
+                        this.clearPasswordInput();
+                        this.setState({ resultMessage: data.errors});
+                    })
+                } else{
+                    this.setState({isRegisterSuccess: true, resultMessage: 'Thank you for registration!'})
                 }
             })
+
     }
     clearPasswordInput(){
         this.setState({ password:''})
@@ -73,6 +68,7 @@ export default class Register extends React.Component {
                <ButtonToolbar>
                    <Button onClick={this.handleRegisterSubmit.bind(this)} bsStyle="primary">Register</Button>
                </ButtonToolbar>
+               <p><Link to='/login' >Already registered? Sign in!</Link></p>
             </div>;
         return (
             <Choose>
