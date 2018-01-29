@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'react-bootstrap';
 
 export default class CourseOne extends React.Component {
     render() {
@@ -8,7 +9,7 @@ export default class CourseOne extends React.Component {
                 <div className="course-one-subtitle">
                     {oneCourse.subtitle?oneCourse.subtitle:'Cool course'}
                 </div>
-                <img src={oneCourse.image} />
+                <Image src={oneCourse.image} />
                 <h3>{oneCourse.title}</h3>
                 <div className="course-one-access">
                     {oneCourse.access}

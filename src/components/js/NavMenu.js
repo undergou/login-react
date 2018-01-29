@@ -8,13 +8,16 @@ export default class NavMenu extends React.Component{
         return (
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to='/' >Home</Link>
+                        <Link to='/'>Home</Link>
                     </Navbar.Brand>
                     <Navbar.Brand>
-                        <Link to='/login' >Login</Link>
+                        <Link to='/login'>Login</Link>
                     </Navbar.Brand>
                     <Navbar.Brand>
-                        <Link to='/register' >Register</Link>
+                        <Link to='/register'>Register</Link>
+                    </Navbar.Brand>
+                    <Navbar.Brand>
+                        <Link to='/readfile'>Read File</Link>
                     </Navbar.Brand>
                 </Navbar.Header>
         );
